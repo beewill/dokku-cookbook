@@ -52,10 +52,4 @@ file "/home/dokku/VHOST" do
   content node["dokku"]["domain"] || node["fqdn"]
 end
 
-openssl_dhparam node["dokku"]["nginx"]["dhparam_file"] do
-  key_length node["dokku"]["nginx"]["dhparam_key_length"]
-
-  notifies :restart, "service[nginx]", :delayed
-end
-
 dokku_nginx_template "global"
